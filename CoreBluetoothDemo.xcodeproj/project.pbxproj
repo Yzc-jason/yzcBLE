@@ -15,6 +15,8 @@
 		D7FE432D1D4A451E00B758BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7FE432B1D4A451E00B758BA /* LaunchScreen.storyboard */; };
 		D7FE43381D4A451E00B758BA /* CoreBluetoothDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FE43371D4A451E00B758BA /* CoreBluetoothDemoTests.m */; };
 		D7FE43431D4A451E00B758BA /* CoreBluetoothDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FE43421D4A451E00B758BA /* CoreBluetoothDemoUITests.m */; };
+		D7FE43561D4A653A00B758BA /* BlueToothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FE43551D4A653A00B758BA /* BlueToothManager.m */; };
+		D7FE43591D4A654500B758BA /* BLEModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FE43581D4A654500B758BA /* BLEModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,10 @@
 		D7FE433E1D4A451E00B758BA /* CoreBluetoothDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreBluetoothDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FE43421D4A451E00B758BA /* CoreBluetoothDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreBluetoothDemoUITests.m; sourceTree = "<group>"; };
 		D7FE43441D4A451E00B758BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7FE43541D4A653A00B758BA /* BlueToothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueToothManager.h; sourceTree = "<group>"; };
+		D7FE43551D4A653A00B758BA /* BlueToothManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueToothManager.m; sourceTree = "<group>"; };
+		D7FE43571D4A654500B758BA /* BLEModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEModel.h; sourceTree = "<group>"; };
+		D7FE43581D4A654500B758BA /* BLEModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,7 @@
 		D7FE431C1D4A451E00B758BA /* CoreBluetoothDemo */ = {
 			isa = PBXGroup;
 			children = (
+				D7FE43531D4A653A00B758BA /* yzcBLE */,
 				D7FE43201D4A451E00B758BA /* AppDelegate.h */,
 				D7FE43211D4A451E00B758BA /* AppDelegate.m */,
 				D7FE43231D4A451E00B758BA /* ViewController.h */,
@@ -138,6 +145,17 @@
 				D7FE43441D4A451E00B758BA /* Info.plist */,
 			);
 			path = CoreBluetoothDemoUITests;
+			sourceTree = "<group>";
+		};
+		D7FE43531D4A653A00B758BA /* yzcBLE */ = {
+			isa = PBXGroup;
+			children = (
+				D7FE43541D4A653A00B758BA /* BlueToothManager.h */,
+				D7FE43551D4A653A00B758BA /* BlueToothManager.m */,
+				D7FE43571D4A654500B758BA /* BLEModel.h */,
+				D7FE43581D4A654500B758BA /* BLEModel.m */,
+			);
+			path = yzcBLE;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +290,8 @@
 			files = (
 				D7FE43251D4A451E00B758BA /* ViewController.m in Sources */,
 				D7FE43221D4A451E00B758BA /* AppDelegate.m in Sources */,
+				D7FE43561D4A653A00B758BA /* BlueToothManager.m in Sources */,
+				D7FE43591D4A654500B758BA /* BLEModel.m in Sources */,
 				D7FE431F1D4A451E00B758BA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,6 +516,7 @@
 				D7FE43491D4A451E00B758BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D7FE434A1D4A451E00B758BA /* Build configuration list for PBXNativeTarget "CoreBluetoothDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +525,7 @@
 				D7FE434C1D4A451E00B758BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D7FE434D1D4A451E00B758BA /* Build configuration list for PBXNativeTarget "CoreBluetoothDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +534,7 @@
 				D7FE434F1D4A451E00B758BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
