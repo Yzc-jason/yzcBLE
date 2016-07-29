@@ -10,8 +10,8 @@
 #import "BlueToothManager.h"
 
 static NSString *const serviceStrUUID = @"FFF0";
-static NSString *const notiyCharacteristicStrUUID = @"FFF1";
-static NSString *const readwriteCharacteristicStrUUID = @"FFF2";
+static NSString *const characteristicUUID = @"FFF1";
+static NSString *const noticharacteristicUUID = @"FFF2";
 
 @interface BlueToothManager()<CBPeripheralDelegate,CBCentralManagerDelegate>
 
@@ -24,8 +24,14 @@ static NSString *const readwriteCharacteristicStrUUID = @"FFF2";
 /** 特征值 */
 @property (nonatomic, strong) CBCharacteristic *characteristic;
 
+/** 接收数据通道*/
+@property (nonatomic, strong) CBCharacteristic *noticharacteristic;
+
 /** 特征UUID */
 @property (nonatomic, strong) CBUUID *characteristicUUID;
+
+/** 通知UUID */
+@property (nonatomic, strong) CBUUID *noticharacteristicUUID;
 
 /** 服务UUID */
 @property (nonatomic, strong) CBUUID *serviceUUID;
@@ -36,7 +42,11 @@ static NSString *const readwriteCharacteristicStrUUID = @"FFF2";
 /** 扫描外设回调 */
 @property (nonatomic, copy) ScanPeripheral peripheralBlock;
 
+/** 连接成功回调 */
 @property (nonatomic, copy) ConnectPeripheralSuccess connectBlock;
+
+/** 连接失败回调 */
+@property (nonatomic, copy) CannelPeripheral cannelBlock;
 
 @end
 
@@ -57,7 +67,8 @@ static NSString *const readwriteCharacteristicStrUUID = @"FFF2";
     self = [super init];
     if (self) {
         _serviceUUID = [CBUUID UUIDWithString:serviceStrUUID];
-        _characteristicUUID = [CBUUID UUIDWithString:notiyCharacteristicStrUUID];
+        _characteristicUUID = [CBUUID UUIDWithString:characteristicUUID];
+        _noticharacteristicUUID = [CBUUID UUIDWithString:noticharacteristicUUID];
     }
     return self;
 }
@@ -167,6 +178,9 @@ static NSString *const readwriteCharacteristicStrUUID = @"FFF2";
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"%s, line = %d, %@=断开连接", __FUNCTION__, __LINE__, peripheral.name);
+    if (self.cannelBlock) {
+        self.cannelBlock(peripheral);
+    }
 }
 
 #pragma mark - 外设代理
@@ -188,15 +202,14 @@ static NSString *const readwriteCharacteristicStrUUID = @"FFF2";
 // 发现外设服务里的特征的时候调用的代理方法
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
-    NSLog(@"%s, line = %d", __FUNCTION__, __LINE__);
-    
-    
-    for (CBCharacteristic *cha in service.characteristics) {
-        if (cha.UUID == _serviceUUID) {
-            self.characteristic = cha;
-            NSLog(@"订阅写入成功UUID");
+    for (CBCharacteristic *characteristic in service.characteristics) {
+        if (characteristic.UUID == _serviceUUID) {
+            self.characteristic = characteristic;
+        }else if(characteristic.UUID == _noticharacteristicUUID) {
+            self.noticharacteristic = characteristic;
+            [self.peripheral setNotifyValue:YES forCharacteristic:self.noticharacteristic];
+             NSLog(@"订阅写入成功UUID");
         }
-        
     }
 }
 
@@ -247,6 +260,11 @@ static NSString *const readwriteCharacteristicStrUUID = @"FFF2";
     self.peripheralBlock = block;
 }
 
+- (void) cannelWithPeripheral:(CBPeripheral *)peripheral block:(CannelPeripheral)block
+{
+    [self.cMgr cancelPeripheralConnection:peripheral];
+    self.cannelBlock = block;
+}
 
 
 @end
