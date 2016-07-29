@@ -37,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		041481771D4AE62C00C31D8C /* yzcBLE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = yzcBLE.h; sourceTree = "<group>"; };
 		D7FE431A1D4A451E00B758BA /* CoreBluetoothDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreBluetoothDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FE431E1D4A451E00B758BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D7FE43201D4A451E00B758BA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -154,6 +155,7 @@
 				D7FE43551D4A653A00B758BA /* BlueToothManager.m */,
 				D7FE43571D4A654500B758BA /* BLEModel.h */,
 				D7FE43581D4A654500B758BA /* BLEModel.m */,
+				041481771D4AE62C00C31D8C /* yzcBLE.h */,
 			);
 			path = yzcBLE;
 			sourceTree = "<group>";
@@ -225,6 +227,7 @@
 				TargetAttributes = {
 					D7FE43191D4A451E00B758BA = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 49S5ZBPJES;
 					};
 					D7FE43321D4A451E00B758BA = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -433,10 +436,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CoreBluetoothDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yzc.CoreBluetoothDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -444,10 +450,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CoreBluetoothDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yzc.CoreBluetoothDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

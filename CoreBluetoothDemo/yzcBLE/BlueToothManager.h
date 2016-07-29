@@ -17,6 +17,13 @@ typedef void (^ConnectPeripheralSuccess)(CBPeripheral *peripheral);
 @interface BlueToothManager : NSObject
 
 /**
+ *  单例
+ *
+ *  @return
+ */
++(id)sharedInstance;
+
+/**
  *  写数据到外设
  *
  *  @param data 数据
@@ -32,7 +39,7 @@ typedef void (^ConnectPeripheralSuccess)(CBPeripheral *peripheral);
  *
  *  @param peripheral peripheral
  */
-- (void) conentedWithPeripheral:(CBPeripheral *)peripheral block:(ConnectPeripheralSuccess)block;
+- (void) connectedWithPeripheral:(CBPeripheral *)peripheral block:(ConnectPeripheralSuccess)block;
 
 /**
  *  扫描外设

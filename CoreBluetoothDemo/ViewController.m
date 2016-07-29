@@ -7,21 +7,65 @@
 //
 
 #import "ViewController.h"
+#import "yzcBLE/yzcBLE.h"
+
 
 @interface ViewController ()
+@property (nonatomic, strong) NSMutableArray *dataSoure;
+
 
 @end
 
 @implementation ViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.dataSoure = [NSMutableArray array];
+    [[BlueToothManager sharedInstance] setBlockOnDiscoverToPeripherals:^(BLEModel *model) {
+        [self.dataSoure addObject:model];
+        [self.tableView reloadData];
+    }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+#pragma mark - tableViewDelegate & tableViewDataSource
+
+
+// 行数
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.dataSoure.count;
+}
+// 行高,调用顺序比cellForRowAtIndexPath方法优先
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
 }
 
+// 点击Cell
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BLEModel *model = self.dataSoure[indexPath.row];
+    [[BlueToothManager sharedInstance] connectedWithPeripheral:model.peripheral block:^(CBPeripheral *peripheral) {
+        NSString *msg = [NSString stringWithFormat:@"连接%@成功",model.peripheral.name];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView show];
+    }];
+    
+}
+
+// Cell循环利用
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    BLEModel *model = self.dataSoure[indexPath.row];
+    cell.textLabel.text = model.peripheral.name;
+    
+    return cell;
+}
 @end

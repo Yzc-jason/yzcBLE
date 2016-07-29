@@ -231,13 +231,13 @@ static NSString *const readwriteCharacteristicStrUUID = @"FFF2";
     [self.cMgr stopScan];
 }
 
-- (void) conentedWithPeripheral:(CBPeripheral *)peripheral block:(ConnectPeripheralSuccess)block
+- (void) connectedWithPeripheral:(CBPeripheral *)peripheral block:(ConnectPeripheralSuccess)block
 {
     [self.cMgr stopScan];
     if (peripheral == nil) {
         return;
     }
-    [self.cMgr connectPeripheral:self.peripheral options:nil];
+    [self.cMgr connectPeripheral:peripheral options:nil];
     self.connectBlock = block;
 }
 
