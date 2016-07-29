@@ -12,6 +12,7 @@
 
 typedef void (^DeviceRsp)(NSData *data);
 typedef void (^ScanPeripheral)(BLEModel *model);
+typedef void (^ConnectPeripheralSuccess)(CBPeripheral *peripheral);
 
 @interface BlueToothManager : NSObject
 
@@ -31,7 +32,7 @@ typedef void (^ScanPeripheral)(BLEModel *model);
  *
  *  @param peripheral peripheral
  */
-- (void) conentedWithPeripheral:(CBPeripheral *)peripheral;
+- (void) conentedWithPeripheral:(CBPeripheral *)peripheral block:(ConnectPeripheralSuccess)block;
 
 /**
  *  扫描外设

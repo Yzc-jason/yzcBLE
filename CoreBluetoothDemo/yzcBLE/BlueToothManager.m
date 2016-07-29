@@ -24,17 +24,19 @@ static NSString *const readwriteCharacteristicStrUUID = @"FFF2";
 /** 特征值 */
 @property (nonatomic, strong) CBCharacteristic *characteristic;
 
-/** 特征ID */
+/** 特征UUID */
 @property (nonatomic, strong) CBUUID *characteristicUUID;
 
 /** 服务UUID */
 @property (nonatomic, strong) CBUUID *serviceUUID;
 
 /** 写入数据回调 */
-@property (nonatomic,copy) DeviceRsp deviceBlock;
+@property (nonatomic, copy) DeviceRsp deviceBlock;
 
 /** 扫描外设回调 */
-@property (nonatomic,copy) ScanPeripheral peripheralBlock;
+@property (nonatomic, copy) ScanPeripheral peripheralBlock;
+
+@property (nonatomic, copy) ConnectPeripheralSuccess connectBlock;
 
 @end
 
@@ -123,7 +125,6 @@ static NSString *const readwriteCharacteristicStrUUID = @"FFF2";
      advertisementData:(NSDictionary *)advertisementData
                   RSSI:(NSNumber *)RSSI
 {
-    NSLog(@"%s, line = %d 名字：%@", __FUNCTION__, __LINE__,peripheral.name);
     
     BLEModel *model = [[BLEModel alloc] init];
     model.RSSI = RSSI;
@@ -145,11 +146,17 @@ static NSString *const readwriteCharacteristicStrUUID = @"FFF2";
   didConnectPeripheral:(CBPeripheral *)peripheral
 {
     NSLog(@"%s, line = %d, %@=连接成功", __FUNCTION__, __LINE__, peripheral.name);
+    
     // 连接成功之后,可以进行服务和特征的发现
     self.peripheral.delegate = self;
     NSArray *services = [[NSArray alloc]initWithObjects:self.serviceUUID, nil];
+    self.peripheral = peripheral;
     [self.peripheral discoverServices:services];
+    if (self.connectBlock) {
+        self.connectBlock(peripheral);
+    }
 }
+
 // 外设连接失败
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
@@ -161,8 +168,8 @@ static NSString *const readwriteCharacteristicStrUUID = @"FFF2";
 {
     NSLog(@"%s, line = %d, %@=断开连接", __FUNCTION__, __LINE__, peripheral.name);
 }
-#pragma mark - 外设代理
 
+#pragma mark - 外设代理
 // 发现外设的服务后调用的方法
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
@@ -192,6 +199,7 @@ static NSString *const readwriteCharacteristicStrUUID = @"FFF2";
         
     }
 }
+
 // 更新特征的value的时候会调用
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
@@ -223,13 +231,14 @@ static NSString *const readwriteCharacteristicStrUUID = @"FFF2";
     [self.cMgr stopScan];
 }
 
-- (void) conentedWithPeripheral:(CBPeripheral *)peripheral
+- (void) conentedWithPeripheral:(CBPeripheral *)peripheral block:(ConnectPeripheralSuccess)block
 {
     [self.cMgr stopScan];
     if (peripheral == nil) {
         return;
     }
     [self.cMgr connectPeripheral:self.peripheral options:nil];
+    self.connectBlock = block;
 }
 
 - (void) setBlockOnDiscoverToPeripherals:(ScanPeripheral)block
