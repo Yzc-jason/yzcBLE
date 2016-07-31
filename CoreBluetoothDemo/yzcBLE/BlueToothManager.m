@@ -156,14 +156,12 @@ static NSString *const noticharacteristicUUID = @"FFF2";
 - (void)centralManager:(CBCentralManager *)central
   didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    NSLog(@"%s, line = %d, %@=连接成功", __FUNCTION__, __LINE__, peripheral.name);
-    
-    // 连接成功之后,可以进行服务和特征的发现
     self.peripheral.delegate = self;
     NSArray *services = [[NSArray alloc]initWithObjects:self.serviceUUID, nil];
     self.peripheral = peripheral;
     [self.peripheral discoverServices:services];
     if (self.connectBlock) {
+        self.isConnected = YES;
         self.connectBlock(peripheral);
     }
 }
@@ -172,6 +170,7 @@ static NSString *const noticharacteristicUUID = @"FFF2";
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"%s, line = %d, %@=连接失败", __FUNCTION__, __LINE__, peripheral.name);
+    self.isConnected = NO;
 }
 
 // 丢失连接
@@ -179,6 +178,7 @@ static NSString *const noticharacteristicUUID = @"FFF2";
 {
     NSLog(@"%s, line = %d, %@=断开连接", __FUNCTION__, __LINE__, peripheral.name);
     if (self.cannelBlock) {
+        self.isConnected = NO;
         self.cannelBlock(peripheral);
     }
 }
@@ -187,14 +187,12 @@ static NSString *const noticharacteristicUUID = @"FFF2";
 // 发现外设的服务后调用的方法
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
-    NSLog(@"%s, line = %d", __FUNCTION__, __LINE__);
-    // 判断没有失败
+   
     if (error) {
         NSLog(@"%s, line = %d, error = %@", __FUNCTION__, __LINE__, error.localizedDescription);
         return;
     }
     for (CBService *service in peripheral.services) {
-        // 发现服务后,让设备再发现服务内部的特征们 didDiscoverCharacteristicsForService
         [peripheral discoverCharacteristics:nil forService:service];
     }
 }
@@ -203,9 +201,9 @@ static NSString *const noticharacteristicUUID = @"FFF2";
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
     for (CBCharacteristic *characteristic in service.characteristics) {
-        if (characteristic.UUID == _serviceUUID) {
+        if ([characteristic.UUID.UUIDString isEqualToString:characteristicUUID]) {
             self.characteristic = characteristic;
-        }else if(characteristic.UUID == _noticharacteristicUUID) {
+        }else if([characteristic.UUID.UUIDString isEqualToString:noticharacteristicUUID]) {
             self.noticharacteristic = characteristic;
             [self.peripheral setNotifyValue:YES forCharacteristic:self.noticharacteristic];
              NSLog(@"订阅写入成功UUID");
@@ -216,7 +214,6 @@ static NSString *const noticharacteristicUUID = @"FFF2";
 // 更新特征的value的时候会调用
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
-    NSLog(@"%s, line = %d", __FUNCTION__, __LINE__);
     
     if (error) {
         NSLog(@"%s, line = %d, error = %@", __FUNCTION__, __LINE__, error.localizedDescription);

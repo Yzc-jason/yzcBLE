@@ -16,6 +16,8 @@ typedef void (^ConnectPeripheralSuccess)(CBPeripheral *peripheral);
 typedef void (^CannelPeripheral)(CBPeripheral *peripheral);
 
 @interface BlueToothManager : NSObject
+/** 连接状态 */
+@property (nonatomic, assign) BOOL isConnected;
 
 /**
  *  单例
