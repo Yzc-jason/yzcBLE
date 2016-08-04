@@ -90,26 +90,29 @@ static NSString *const noticharacteristicUUID = @"FFF2";
 // 只要中心管理者初始化,就会触发此代理方法
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
-    
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *title = @"";
+    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
     switch (central.state) {
         case CBCentralManagerStateUnknown:
             NSLog(@"CBCentralManagerStateUnknown");
+            title = @"设备不支持蓝牙";
             break;
         case CBCentralManagerStateResetting:
             NSLog(@"CBCentralManagerStateResetting");
             break;
         case CBCentralManagerStateUnsupported:
-            NSLog(@"CBCentralManagerStateUnsupported");
+//            NSLog(@"CBCentralManagerStateUnsupported");
+            title = [NSString stringWithFormat:@"打开蓝牙来允许“%@”连接到配件",app_Name];
             break;
         case CBCentralManagerStateUnauthorized:
             NSLog(@"CBCentralManagerStateUnauthorized");
             break;
         case CBCentralManagerStatePoweredOff:
-            NSLog(@"CBCentralManagerStatePoweredOff");
+            title = [NSString stringWithFormat:@"打开蓝牙来允许“%@”连接到配件",app_Name];
             break;
         case CBCentralManagerStatePoweredOn:
         {
-            NSLog(@"CBCentralManagerStatePoweredOn");
             // 在中心管理者成功开启后再进行一些操作
             // 搜索外设
             [self.cMgr scanForPeripheralsWithServices:nil // 通过某些服务筛选外设
@@ -120,6 +123,8 @@ static NSString *const noticharacteristicUUID = @"FFF2";
         default:
             break;
     }
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:title delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+    [alertView show];
 }
 
 
@@ -254,6 +259,8 @@ static NSString *const noticharacteristicUUID = @"FFF2";
 - (void) setBlockOnDiscoverToPeripherals:(ScanPeripheral)block
 {
     [self cMgr];
+    [self.cMgr scanForPeripheralsWithServices:nil // 通过某些服务筛选外设
+                                      options:nil]; // dict,条件
     self.peripheralBlock = block;
 }
 
