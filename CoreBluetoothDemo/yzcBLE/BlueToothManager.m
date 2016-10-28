@@ -12,7 +12,6 @@
 
 static NSString *const characteristicUUID = @"FFF1";
 static NSString *const noticharacteristicUUID = @"FFF2";
->>>>>>> 29a9fe281fbbd51d34e8c91ee5e6f19539edccc7
 
 @interface BlueToothManager()<CBPeripheralDelegate,CBCentralManagerDelegate>
 
@@ -149,11 +148,6 @@ static NSString *const noticharacteristicUUID = @"FFF2";
             
         default:
             break;
-    }
-    if (title.length) {
-        
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:title delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [alertView show];
     }
 
 }
