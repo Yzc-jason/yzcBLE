@@ -10,11 +10,6 @@
 #import "BlueToothManager.h"
 #import "yzcDefine.h"
 
-<<<<<<< HEAD
-static NSString *const serviceStrUUID = @"6e400001-b5a3-f393-e0a9-e50e24dcca9e";
-static NSString *const characteristicUUID = @"6E400002-B5A3-F393-E0A9-E50E24DCCA9E";
-static NSString *const noticharacteristicUUID = @"6E400003-B5A3-F393-E0A9-E50E24DCCA9E";
-=======
 static NSString *const characteristicUUID = @"FFF1";
 static NSString *const noticharacteristicUUID = @"FFF2";
 >>>>>>> 29a9fe281fbbd51d34e8c91ee5e6f19539edccc7
@@ -155,16 +150,12 @@ static NSString *const noticharacteristicUUID = @"FFF2";
         default:
             break;
     }
-<<<<<<< HEAD
     if (title.length) {
         
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:title delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [alertView show];
     }
-=======
-    
-    
->>>>>>> 29a9fe281fbbd51d34e8c91ee5e6f19539edccc7
+
 }
 
 
@@ -269,11 +260,8 @@ static NSString *const noticharacteristicUUID = @"FFF2";
         }else if([characteristic.UUID.UUIDString isEqualToString:noticharacteristicUUID]) {
             self.noticharacteristic = characteristic;
             [self.peripheral setNotifyValue:YES forCharacteristic:self.noticharacteristic];
-<<<<<<< HEAD
-             NSLog(@"noticharacteristic UUID");
-=======
              YZCLog(@"订阅写入成功UUID");
->>>>>>> 29a9fe281fbbd51d34e8c91ee5e6f19539edccc7
+
         }
     }
 }
