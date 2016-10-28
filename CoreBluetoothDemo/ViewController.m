@@ -22,6 +22,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataSoure = [NSMutableArray array];
+    BlueToothManager *manager = [BlueToothManager sharedInstance];
+//    manager.isFilter = YES;
+    manager.isReconnection = YES;
+    manager.services = @[[CBUUID UUIDWithString:@"0783B03E-8535-B5A0-7140-A304D2495CB7"]];
     [[BlueToothManager sharedInstance] setBlockOnDiscoverToPeripherals:^(BLEModel *model) {
         [self.dataSoure addObject:model];
         [self.tableView reloadData];

@@ -38,7 +38,8 @@
 
 /* Begin PBXFileReference section */
 		041481771D4AE62C00C31D8C /* yzcBLE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = yzcBLE.h; sourceTree = "<group>"; };
-		D7FE431A1D4A451E00B758BA /* CoreBluetoothDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreBluetoothDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0441E0E81DC0A7010002A2B0 /* yzcDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yzcDefine.h; sourceTree = "<group>"; };
+		D7FE431A1D4A451E00B758BA /* yzcBluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yzcBluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FE431E1D4A451E00B758BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D7FE43201D4A451E00B758BA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D7FE43211D4A451E00B758BA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -48,10 +49,10 @@
 		D7FE43291D4A451E00B758BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7FE432C1D4A451E00B758BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D7FE432E1D4A451E00B758BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D7FE43331D4A451E00B758BA /* CoreBluetoothDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreBluetoothDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7FE43331D4A451E00B758BA /* yzcBluetoothTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yzcBluetoothTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FE43371D4A451E00B758BA /* CoreBluetoothDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreBluetoothDemoTests.m; sourceTree = "<group>"; };
 		D7FE43391D4A451E00B758BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D7FE433E1D4A451E00B758BA /* CoreBluetoothDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreBluetoothDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7FE433E1D4A451E00B758BA /* yzcBluetoothUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yzcBluetoothUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FE43421D4A451E00B758BA /* CoreBluetoothDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreBluetoothDemoUITests.m; sourceTree = "<group>"; };
 		D7FE43441D4A451E00B758BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7FE43541D4A653A00B758BA /* BlueToothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueToothManager.h; sourceTree = "<group>"; };
@@ -98,9 +99,9 @@
 		D7FE431B1D4A451E00B758BA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D7FE431A1D4A451E00B758BA /* CoreBluetoothDemo.app */,
-				D7FE43331D4A451E00B758BA /* CoreBluetoothDemoTests.xctest */,
-				D7FE433E1D4A451E00B758BA /* CoreBluetoothDemoUITests.xctest */,
+				D7FE431A1D4A451E00B758BA /* yzcBluetooth.app */,
+				D7FE43331D4A451E00B758BA /* yzcBluetoothTests.xctest */,
+				D7FE433E1D4A451E00B758BA /* yzcBluetoothUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,6 +157,7 @@
 				D7FE43571D4A654500B758BA /* BLEModel.h */,
 				D7FE43581D4A654500B758BA /* BLEModel.m */,
 				041481771D4AE62C00C31D8C /* yzcBLE.h */,
+				0441E0E81DC0A7010002A2B0 /* yzcDefine.h */,
 			);
 			path = yzcBLE;
 			sourceTree = "<group>";
@@ -163,9 +165,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D7FE43191D4A451E00B758BA /* CoreBluetoothDemo */ = {
+		D7FE43191D4A451E00B758BA /* yzcBluetooth */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D7FE43471D4A451E00B758BA /* Build configuration list for PBXNativeTarget "CoreBluetoothDemo" */;
+			buildConfigurationList = D7FE43471D4A451E00B758BA /* Build configuration list for PBXNativeTarget "yzcBluetooth" */;
 			buildPhases = (
 				D7FE43161D4A451E00B758BA /* Sources */,
 				D7FE43171D4A451E00B758BA /* Frameworks */,
@@ -175,14 +177,14 @@
 			);
 			dependencies = (
 			);
-			name = CoreBluetoothDemo;
+			name = yzcBluetooth;
 			productName = CoreBluetoothDemo;
-			productReference = D7FE431A1D4A451E00B758BA /* CoreBluetoothDemo.app */;
+			productReference = D7FE431A1D4A451E00B758BA /* yzcBluetooth.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D7FE43321D4A451E00B758BA /* CoreBluetoothDemoTests */ = {
+		D7FE43321D4A451E00B758BA /* yzcBluetoothTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D7FE434A1D4A451E00B758BA /* Build configuration list for PBXNativeTarget "CoreBluetoothDemoTests" */;
+			buildConfigurationList = D7FE434A1D4A451E00B758BA /* Build configuration list for PBXNativeTarget "yzcBluetoothTests" */;
 			buildPhases = (
 				D7FE432F1D4A451E00B758BA /* Sources */,
 				D7FE43301D4A451E00B758BA /* Frameworks */,
@@ -193,14 +195,14 @@
 			dependencies = (
 				D7FE43351D4A451E00B758BA /* PBXTargetDependency */,
 			);
-			name = CoreBluetoothDemoTests;
+			name = yzcBluetoothTests;
 			productName = CoreBluetoothDemoTests;
-			productReference = D7FE43331D4A451E00B758BA /* CoreBluetoothDemoTests.xctest */;
+			productReference = D7FE43331D4A451E00B758BA /* yzcBluetoothTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		D7FE433D1D4A451E00B758BA /* CoreBluetoothDemoUITests */ = {
+		D7FE433D1D4A451E00B758BA /* yzcBluetoothUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D7FE434D1D4A451E00B758BA /* Build configuration list for PBXNativeTarget "CoreBluetoothDemoUITests" */;
+			buildConfigurationList = D7FE434D1D4A451E00B758BA /* Build configuration list for PBXNativeTarget "yzcBluetoothUITests" */;
 			buildPhases = (
 				D7FE433A1D4A451E00B758BA /* Sources */,
 				D7FE433B1D4A451E00B758BA /* Frameworks */,
@@ -211,9 +213,9 @@
 			dependencies = (
 				D7FE43401D4A451E00B758BA /* PBXTargetDependency */,
 			);
-			name = CoreBluetoothDemoUITests;
+			name = yzcBluetoothUITests;
 			productName = CoreBluetoothDemoUITests;
-			productReference = D7FE433E1D4A451E00B758BA /* CoreBluetoothDemoUITests.xctest */;
+			productReference = D7FE433E1D4A451E00B758BA /* yzcBluetoothUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -227,7 +229,7 @@
 				TargetAttributes = {
 					D7FE43191D4A451E00B758BA = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 49S5ZBPJES;
+						DevelopmentTeam = ZFHSP8SEMY;
 					};
 					D7FE43321D4A451E00B758BA = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -239,7 +241,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D7FE43151D4A451E00B758BA /* Build configuration list for PBXProject "CoreBluetoothDemo" */;
+			buildConfigurationList = D7FE43151D4A451E00B758BA /* Build configuration list for PBXProject "yzcBluetooth" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -252,9 +254,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D7FE43191D4A451E00B758BA /* CoreBluetoothDemo */,
-				D7FE43321D4A451E00B758BA /* CoreBluetoothDemoTests */,
-				D7FE433D1D4A451E00B758BA /* CoreBluetoothDemoUITests */,
+				D7FE43191D4A451E00B758BA /* yzcBluetooth */,
+				D7FE43321D4A451E00B758BA /* yzcBluetoothTests */,
+				D7FE433D1D4A451E00B758BA /* yzcBluetoothUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -320,12 +322,12 @@
 /* Begin PBXTargetDependency section */
 		D7FE43351D4A451E00B758BA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D7FE43191D4A451E00B758BA /* CoreBluetoothDemo */;
+			target = D7FE43191D4A451E00B758BA /* yzcBluetooth */;
 			targetProxy = D7FE43341D4A451E00B758BA /* PBXContainerItemProxy */;
 		};
 		D7FE43401D4A451E00B758BA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D7FE43191D4A451E00B758BA /* CoreBluetoothDemo */;
+			target = D7FE43191D4A451E00B758BA /* yzcBluetooth */;
 			targetProxy = D7FE433F1D4A451E00B758BA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -438,7 +440,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = ZFHSP8SEMY;
 				INFOPLIST_FILE = CoreBluetoothDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yzc.CoreBluetoothDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -452,7 +456,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = ZFHSP8SEMY;
 				INFOPLIST_FILE = CoreBluetoothDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yzc.CoreBluetoothDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -468,7 +474,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yzc.CoreBluetoothDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreBluetoothDemo.app/CoreBluetoothDemo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yzcBluetooth.app/yzcBluetooth";
 			};
 			name = Debug;
 		};
@@ -480,7 +486,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yzc.CoreBluetoothDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreBluetoothDemo.app/CoreBluetoothDemo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yzcBluetooth.app/yzcBluetooth";
 			};
 			name = Release;
 		};
@@ -509,7 +515,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D7FE43151D4A451E00B758BA /* Build configuration list for PBXProject "CoreBluetoothDemo" */ = {
+		D7FE43151D4A451E00B758BA /* Build configuration list for PBXProject "yzcBluetooth" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D7FE43451D4A451E00B758BA /* Debug */,
@@ -518,7 +524,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D7FE43471D4A451E00B758BA /* Build configuration list for PBXNativeTarget "CoreBluetoothDemo" */ = {
+		D7FE43471D4A451E00B758BA /* Build configuration list for PBXNativeTarget "yzcBluetooth" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D7FE43481D4A451E00B758BA /* Debug */,
@@ -527,7 +533,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D7FE434A1D4A451E00B758BA /* Build configuration list for PBXNativeTarget "CoreBluetoothDemoTests" */ = {
+		D7FE434A1D4A451E00B758BA /* Build configuration list for PBXNativeTarget "yzcBluetoothTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D7FE434B1D4A451E00B758BA /* Debug */,
@@ -536,7 +542,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D7FE434D1D4A451E00B758BA /* Build configuration list for PBXNativeTarget "CoreBluetoothDemoUITests" */ = {
+		D7FE434D1D4A451E00B758BA /* Build configuration list for PBXNativeTarget "yzcBluetoothUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D7FE434E1D4A451E00B758BA /* Debug */,
