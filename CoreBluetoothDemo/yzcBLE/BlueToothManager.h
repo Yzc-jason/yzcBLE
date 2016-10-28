@@ -18,6 +18,14 @@ typedef void (^CannelPeripheral)(CBPeripheral *peripheral);
 @interface BlueToothManager : NSObject
 /** 连接状态 */
 @property (nonatomic, assign) BOOL isConnected;
+/** 是否重连 */
+@property (nonatomic, assign) BOOL isReconnection;
+/** 是否过滤掉其他设备 */
+@property (nonatomic, assign) BOOL isFilter;
+
+
+/** UUID数组 */
+@property (nonatomic, strong) NSArray *services;
 
 /**
  *  单例
@@ -42,20 +50,21 @@ typedef void (^CannelPeripheral)(CBPeripheral *peripheral);
  *
  *  @param peripheral peripheral
  */
-- (void) connectedWithPeripheral:(CBPeripheral *)peripheral block:(ConnectPeripheralSuccess)block;
+- (void)connectedWithPeripheral:(CBPeripheral *)peripheral block:(ConnectPeripheralSuccess)block;
 /**
  *  断开链接
  *
  *  @param peripheral 外设
  *  @param block
  */
-- (void) cannelWithPeripheral:(CBPeripheral *)peripheral block:(CannelPeripheral)block;
+- (void)cannelWithPeripheral:(CBPeripheral *)peripheral block:(CannelPeripheral)block;
 
 /**
- *  扫描外设
- *
- *  @param block 回调
+ 扫描外设
+
+ @param block   回调
+ @param service 搜索指定UUID，过滤其他设备
  */
-- (void) setBlockOnDiscoverToPeripherals:(ScanPeripheral)block;
+- (void)setBlockOnDiscoverToPeripherals:(ScanPeripheral)block;
 
 @end

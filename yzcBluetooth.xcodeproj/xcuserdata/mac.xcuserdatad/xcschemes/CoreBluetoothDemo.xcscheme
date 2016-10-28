@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D7FE43191D4A451E00B758BA"
-               BuildableName = "CoreBluetoothDemo.app"
-               BlueprintName = "CoreBluetoothDemo"
-               ReferencedContainer = "container:CoreBluetoothDemo.xcodeproj">
+               BuildableName = "yzcBluetooth.app"
+               BlueprintName = "yzcBluetooth"
+               ReferencedContainer = "container:yzcBluetooth.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D7FE43321D4A451E00B758BA"
-               BuildableName = "CoreBluetoothDemoTests.xctest"
-               BlueprintName = "CoreBluetoothDemoTests"
-               ReferencedContainer = "container:CoreBluetoothDemo.xcodeproj">
+               BuildableName = "yzcBluetoothTests.xctest"
+               BlueprintName = "yzcBluetoothTests"
+               ReferencedContainer = "container:yzcBluetooth.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D7FE433D1D4A451E00B758BA"
-               BuildableName = "CoreBluetoothDemoUITests.xctest"
-               BlueprintName = "CoreBluetoothDemoUITests"
-               ReferencedContainer = "container:CoreBluetoothDemo.xcodeproj">
+               BuildableName = "yzcBluetoothUITests.xctest"
+               BlueprintName = "yzcBluetoothUITests"
+               ReferencedContainer = "container:yzcBluetooth.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D7FE43191D4A451E00B758BA"
-            BuildableName = "CoreBluetoothDemo.app"
-            BlueprintName = "CoreBluetoothDemo"
-            ReferencedContainer = "container:CoreBluetoothDemo.xcodeproj">
+            BuildableName = "yzcBluetooth.app"
+            BlueprintName = "yzcBluetooth"
+            ReferencedContainer = "container:yzcBluetooth.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D7FE43191D4A451E00B758BA"
-            BuildableName = "CoreBluetoothDemo.app"
-            BlueprintName = "CoreBluetoothDemo"
-            ReferencedContainer = "container:CoreBluetoothDemo.xcodeproj">
+            BuildableName = "yzcBluetooth.app"
+            BlueprintName = "yzcBluetooth"
+            ReferencedContainer = "container:yzcBluetooth.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D7FE43191D4A451E00B758BA"
-            BuildableName = "CoreBluetoothDemo.app"
-            BlueprintName = "CoreBluetoothDemo"
-            ReferencedContainer = "container:CoreBluetoothDemo.xcodeproj">
+            BuildableName = "yzcBluetooth.app"
+            BlueprintName = "yzcBluetooth"
+            ReferencedContainer = "container:yzcBluetooth.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

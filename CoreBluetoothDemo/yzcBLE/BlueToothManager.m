@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "BlueToothManager.h"
+#import "yzcDefine.h"
 
+<<<<<<< HEAD
 static NSString *const serviceStrUUID = @"6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 static NSString *const characteristicUUID = @"6E400002-B5A3-F393-E0A9-E50E24DCCA9E";
 static NSString *const noticharacteristicUUID = @"6E400003-B5A3-F393-E0A9-E50E24DCCA9E";
+=======
+static NSString *const characteristicUUID = @"FFF1";
+static NSString *const noticharacteristicUUID = @"FFF2";
+>>>>>>> 29a9fe281fbbd51d34e8c91ee5e6f19539edccc7
 
 @interface BlueToothManager()<CBPeripheralDelegate,CBCentralManagerDelegate>
 
@@ -48,6 +54,10 @@ static NSString *const noticharacteristicUUID = @"6E400003-B5A3-F393-E0A9-E50E24
 /** 连接失败回调 */
 @property (nonatomic, copy) CannelPeripheral cannelBlock;
 
+/** 需要自动重连的外设 */
+@property (nonatomic, strong) NSMutableArray *reConnectPeripherals;
+
+
 @end
 
 @implementation BlueToothManager
@@ -66,9 +76,9 @@ static NSString *const noticharacteristicUUID = @"6E400003-B5A3-F393-E0A9-E50E24
 {
     self = [super init];
     if (self) {
-        _serviceUUID = [CBUUID UUIDWithString:serviceStrUUID];
         _characteristicUUID = [CBUUID UUIDWithString:characteristicUUID];
         _noticharacteristicUUID = [CBUUID UUIDWithString:noticharacteristicUUID];
+        _reConnectPeripherals = [NSMutableArray array];
     }
     return self;
 }
@@ -77,10 +87,33 @@ static NSString *const noticharacteristicUUID = @"6E400003-B5A3-F393-E0A9-E50E24
 - (CBCentralManager *)cMgr
 {
     if (!_cMgr) {
-        _cMgr = [[CBCentralManager alloc] initWithDelegate:self
-                                                     queue:dispatch_get_main_queue()
-                                                   options:nil];
+    
+
+#if  __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_6_0
+        NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 //蓝牙power没打开时alert提示框
+                                 [NSNumber numberWithBool:YES],CBCentralManagerOptionShowPowerAlertKey,
+                                 //重设centralManager恢复的IdentifierKey
+                                 @"yzcBluetoothRestore",CBCentralManagerOptionRestoreIdentifierKey,
+                                 nil];
+        
+#else
+        NSDictionary *options = nil;
+#endif
+        
+        NSArray *backgroundModes = [[[NSBundle mainBundle] infoDictionary]objectForKey:@"UIBackgroundModes"];
+        if ([backgroundModes containsObject:@"bluetooth-central"]) {
+            //后台模式
+            _cMgr = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue() options:options];
+        }
+        else {
+            //非后台模式
+            _cMgr = [[CBCentralManager alloc]initWithDelegate:self queue:dispatch_get_main_queue()];
+        }
+        
+       
     }
+    
     return _cMgr;
 }
 
@@ -90,46 +123,54 @@ static NSString *const noticharacteristicUUID = @"6E400003-B5A3-F393-E0A9-E50E24
 // 只要中心管理者初始化,就会触发此代理方法
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *title = @"";
-    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+
+
     switch (central.state) {
+            
         case CBCentralManagerStateUnknown:
-            NSLog(@"CBCentralManagerStateUnknown");
-            title = @"设备不支持蓝牙";
+            YZCLog(@"状态未知");
             break;
+            
         case CBCentralManagerStateResetting:
-            NSLog(@"CBCentralManagerStateResetting");
-            break;
+            
         case CBCentralManagerStateUnsupported:
-//            NSLog(@"CBCentralManagerStateUnsupported");
-            title = [NSString stringWithFormat:@"打开蓝牙来允许“%@”连接到配件",app_Name];
+            YZCLog(@"设备不支持蓝牙");
             break;
+            
         case CBCentralManagerStateUnauthorized:
-            NSLog(@"CBCentralManagerStateUnauthorized");
+            YZCLog(@"设备未授权使用蓝牙");
             break;
+            
         case CBCentralManagerStatePoweredOff:
-            title = [NSString stringWithFormat:@"打开蓝牙来允许“%@”连接到配件",app_Name];
+            YZCLog(@"蓝牙未开启");
             break;
+            
         case CBCentralManagerStatePoweredOn:
         {
-            // 在中心管理者成功开启后再进行一些操作
-            // 搜索外设
-            [self.cMgr scanForPeripheralsWithServices:nil // 通过某些服务筛选外设
-                                              options:nil]; // dict,条件
+            [self.cMgr scanForPeripheralsWithServices:self.isFilter ? self.services : nil
+                                              options:nil];
         }
-            break;
+            break;  
             
         default:
             break;
     }
+<<<<<<< HEAD
     if (title.length) {
         
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:title delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [alertView show];
     }
+=======
+    
+    
+>>>>>>> 29a9fe281fbbd51d34e8c91ee5e6f19539edccc7
 }
 
+
+- (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary *)dict {
+    
+}
 
 /**
  *  发现外设后调用的方法
@@ -177,17 +218,30 @@ static NSString *const noticharacteristicUUID = @"6E400003-B5A3-F393-E0A9-E50E24
 // 外设连接失败
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    NSLog(@"%s, line = %d, %@=连接失败", __FUNCTION__, __LINE__, peripheral.name);
+    YZCLog(@"%@=连接失败",peripheral.name);
     self.isConnected = NO;
 }
 
 // 丢失连接
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    NSLog(@"%s, line = %d, %@=断开连接", __FUNCTION__, __LINE__, peripheral.name);
+    if (error) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"蓝牙已断开" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"好", nil];
+        [alertView show];
+    }
+    
+    YZCLog(@" %@=断开连接", peripheral.name);
+    self.isConnected = NO;
     if (self.cannelBlock) {
-        self.isConnected = NO;
         self.cannelBlock(peripheral);
+        [self.reConnectPeripherals removeObject:peripheral];
+    }else{
+        if (self.isReconnection) { //重连操作
+            if ([self.reConnectPeripherals containsObject:peripheral]) {
+                
+                [self.cMgr connectPeripheral:peripheral options:nil];
+            }
+        }
     }
 }
 
@@ -197,7 +251,7 @@ static NSString *const noticharacteristicUUID = @"6E400003-B5A3-F393-E0A9-E50E24
 {
    
     if (error) {
-        NSLog(@"%s, line = %d, error = %@", __FUNCTION__, __LINE__, error.localizedDescription);
+        YZCLog(@" error = %@", error.localizedDescription);
         return;
     }
     for (CBService *service in peripheral.services) {
@@ -215,7 +269,11 @@ static NSString *const noticharacteristicUUID = @"6E400003-B5A3-F393-E0A9-E50E24
         }else if([characteristic.UUID.UUIDString isEqualToString:noticharacteristicUUID]) {
             self.noticharacteristic = characteristic;
             [self.peripheral setNotifyValue:YES forCharacteristic:self.noticharacteristic];
+<<<<<<< HEAD
              NSLog(@"noticharacteristic UUID");
+=======
+             YZCLog(@"订阅写入成功UUID");
+>>>>>>> 29a9fe281fbbd51d34e8c91ee5e6f19539edccc7
         }
     }
 }
@@ -225,14 +283,14 @@ static NSString *const noticharacteristicUUID = @"6E400003-B5A3-F393-E0A9-E50E24
 {
     
     if (error) {
-        NSLog(@"%s, line = %d, error = %@", __FUNCTION__, __LINE__, error.localizedDescription);
+        YZCLog( @"error = %@", error.localizedDescription);
         return;
     }
     
     if (self.deviceBlock) {
         self.deviceBlock(characteristic.value);
     }else{
-        NSLog(@"deviceBlock为nil");
+        YZCLog(@"deviceBlock为nil");
     }
 }
 
@@ -244,13 +302,13 @@ static NSString *const noticharacteristicUUID = @"6E400003-B5A3-F393-E0A9-E50E24
     [_peripheral writeValue:data forCharacteristic:self.characteristic type:CBCharacteristicWriteWithResponse];
     self.deviceBlock = rsp;
 }
-
-- (void) stopScan
+    
+- (void)stopScan
 {
     [self.cMgr stopScan];
 }
 
-- (void) connectedWithPeripheral:(CBPeripheral *)peripheral block:(ConnectPeripheralSuccess)block
+- (void)connectedWithPeripheral:(CBPeripheral *)peripheral block:(ConnectPeripheralSuccess)block
 {
     [self.cMgr stopScan];
     if (peripheral == nil) {
@@ -258,17 +316,22 @@ static NSString *const noticharacteristicUUID = @"6E400003-B5A3-F393-E0A9-E50E24
     }
     [self.cMgr connectPeripheral:peripheral options:nil];
     self.connectBlock = block;
+    if (self.isReconnection) {
+        [self.reConnectPeripherals addObject:peripheral];
+    }
 }
 
-- (void) setBlockOnDiscoverToPeripherals:(ScanPeripheral)block
+- (void)setBlockOnDiscoverToPeripherals:(ScanPeripheral)block
 {
+    
     [self cMgr];
-    [self.cMgr scanForPeripheralsWithServices:nil // 通过某些服务筛选外设
+    
+    [self.cMgr scanForPeripheralsWithServices:self.isFilter ? self.services : nil   // 通过某些服务筛选外设
                                       options:nil]; // dict,条件
     self.peripheralBlock = block;
 }
 
-- (void) cannelWithPeripheral:(CBPeripheral *)peripheral block:(CannelPeripheral)block
+- (void)cannelWithPeripheral:(CBPeripheral *)peripheral block:(CannelPeripheral)block
 {
     [self.cMgr cancelPeripheralConnection:peripheral];
     self.cannelBlock = block;
