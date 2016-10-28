@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VVl-Km-aUo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VVl-Km-aUo">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--蓝牙列表-->
         <scene sceneID="MDc-Mj-wRz">
             <objects>
                 <tableViewController id="ayD-j4-oVr" customClass="ViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="add-0P-8DF">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Kmn-u7-O63">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kmn-u7-O63" id="RLR-J1-2ns">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -28,11 +28,67 @@
                             <outlet property="delegate" destination="ayD-j4-oVr" id="cdZ-x7-Twe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="4bD-wh-4et"/>
+                    <navigationItem key="navigationItem" title="蓝牙列表" id="4bD-wh-4et"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dem-NS-oSj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="978" y="361"/>
+            <point key="canvasLocation" x="521.60000000000002" y="341.74666666666667"/>
+        </scene>
+        <!--Test Controller-->
+        <scene sceneID="Lj9-ng-aYh">
+            <objects>
+                <viewController storyboardIdentifier="TestController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="77Z-dA-tBI" customClass="TestController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Di-Gp-Vd0"/>
+                        <viewControllerLayoutGuide type="bottom" id="bAu-df-cO5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="I8J-27-g0R">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6T2-cx-Pjt">
+                                <rect key="frame" x="117" y="70" width="86" height="30"/>
+                                <state key="normal" title="获取步数"/>
+                                <connections>
+                                    <action selector="getStepAction:" destination="77Z-dA-tBI" eventType="touchUpInside" id="UA6-YW-vsg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGF-nj-VKR">
+                                <rect key="frame" x="124" y="118" width="73" height="30"/>
+                                <state key="normal" title="设置时间"/>
+                                <connections>
+                                    <action selector="setTimeAction:" destination="77Z-dA-tBI" eventType="touchUpInside" id="Gef-xY-YCV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ds-U9-unE">
+                                <rect key="frame" x="124" y="163" width="73" height="30"/>
+                                <state key="normal" title="获取心率"/>
+                                <connections>
+                                    <action selector="getHeatRateAction:" destination="77Z-dA-tBI" eventType="touchUpInside" id="3vZ-hN-482"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gKR-DF-486">
+                                <rect key="frame" x="112" y="206" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cj7-tU-1zN">
+                                <rect key="frame" x="127" y="252" width="66" height="30"/>
+                                <state key="normal" title="发送数据"/>
+                                <connections>
+                                    <action selector="sendData:" destination="77Z-dA-tBI" eventType="touchUpInside" id="2mq-kG-5yb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="textField" destination="gKR-DF-486" id="DBw-cV-Oi2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XW1-oe-6zJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="865" y="341"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ba9-Hg-5IZ">
@@ -48,7 +104,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EKE-ar-U5R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="341" y="361"/>
+            <point key="canvasLocation" x="181.86666666666667" y="341.74666666666667"/>
         </scene>
     </scenes>
 </document>

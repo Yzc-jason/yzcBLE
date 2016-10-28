@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D77C7B041D55876F006FEDB3 /* TestController.m in Sources */ = {isa = PBXBuildFile; fileRef = D77C7B031D55876F006FEDB3 /* TestController.m */; };
 		D7FE431F1D4A451E00B758BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FE431E1D4A451E00B758BA /* main.m */; };
 		D7FE43221D4A451E00B758BA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FE43211D4A451E00B758BA /* AppDelegate.m */; };
 		D7FE43251D4A451E00B758BA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FE43241D4A451E00B758BA /* ViewController.m */; };
@@ -38,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		041481771D4AE62C00C31D8C /* yzcBLE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = yzcBLE.h; sourceTree = "<group>"; };
+		D77C7B021D55876F006FEDB3 /* TestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestController.h; sourceTree = "<group>"; };
+		D77C7B031D55876F006FEDB3 /* TestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestController.m; sourceTree = "<group>"; };
 		D7FE431A1D4A451E00B758BA /* CoreBluetoothDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreBluetoothDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FE431E1D4A451E00B758BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D7FE43201D4A451E00B758BA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -113,6 +116,8 @@
 				D7FE43211D4A451E00B758BA /* AppDelegate.m */,
 				D7FE43231D4A451E00B758BA /* ViewController.h */,
 				D7FE43241D4A451E00B758BA /* ViewController.m */,
+				D77C7B021D55876F006FEDB3 /* TestController.h */,
+				D77C7B031D55876F006FEDB3 /* TestController.m */,
 				D7FE43261D4A451E00B758BA /* Main.storyboard */,
 				D7FE43291D4A451E00B758BA /* Assets.xcassets */,
 				D7FE432B1D4A451E00B758BA /* LaunchScreen.storyboard */,
@@ -227,7 +232,7 @@
 				TargetAttributes = {
 					D7FE43191D4A451E00B758BA = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 49S5ZBPJES;
+						DevelopmentTeam = 4XLMJ8J23D;
 					};
 					D7FE43321D4A451E00B758BA = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -292,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7FE43251D4A451E00B758BA /* ViewController.m in Sources */,
+				D77C7B041D55876F006FEDB3 /* TestController.m in Sources */,
 				D7FE43221D4A451E00B758BA /* AppDelegate.m in Sources */,
 				D7FE43561D4A653A00B758BA /* BlueToothManager.m in Sources */,
 				D7FE43591D4A654500B758BA /* BLEModel.m in Sources */,

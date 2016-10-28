@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "BlueToothManager.h"
 
-static NSString *const serviceStrUUID = @"FFF0";
-static NSString *const characteristicUUID = @"FFF1";
-static NSString *const noticharacteristicUUID = @"FFF2";
+static NSString *const serviceStrUUID = @"6e400001-b5a3-f393-e0a9-e50e24dcca9e";
+static NSString *const characteristicUUID = @"6E400002-B5A3-F393-E0A9-E50E24DCCA9E";
+static NSString *const noticharacteristicUUID = @"6E400003-B5A3-F393-E0A9-E50E24DCCA9E";
 
 @interface BlueToothManager()<CBPeripheralDelegate,CBCentralManagerDelegate>
 
@@ -123,8 +123,11 @@ static NSString *const noticharacteristicUUID = @"FFF2";
         default:
             break;
     }
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:title delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-    [alertView show];
+    if (title.length) {
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:title delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alertView show];
+    }
 }
 
 
@@ -161,9 +164,9 @@ static NSString *const noticharacteristicUUID = @"FFF2";
 - (void)centralManager:(CBCentralManager *)central
   didConnectPeripheral:(CBPeripheral *)peripheral
 {
+    self.peripheral = peripheral;
     self.peripheral.delegate = self;
     NSArray *services = [[NSArray alloc]initWithObjects:self.serviceUUID, nil];
-    self.peripheral = peripheral;
     [self.peripheral discoverServices:services];
     if (self.connectBlock) {
         self.isConnected = YES;
@@ -208,10 +211,11 @@ static NSString *const noticharacteristicUUID = @"FFF2";
     for (CBCharacteristic *characteristic in service.characteristics) {
         if ([characteristic.UUID.UUIDString isEqualToString:characteristicUUID]) {
             self.characteristic = characteristic;
+            NSLog(@"characteristic UUID");
         }else if([characteristic.UUID.UUIDString isEqualToString:noticharacteristicUUID]) {
             self.noticharacteristic = characteristic;
             [self.peripheral setNotifyValue:YES forCharacteristic:self.noticharacteristic];
-             NSLog(@"订阅写入成功UUID");
+             NSLog(@"noticharacteristic UUID");
         }
     }
 }
@@ -237,7 +241,7 @@ static NSString *const noticharacteristicUUID = @"FFF2";
 - (void)writeWithData:(NSData *)data rsp:(DeviceRsp)rsp
 {
     
-    [_peripheral writeValue:data forCharacteristic:_characteristic type:CBCharacteristicWriteWithResponse];
+    [_peripheral writeValue:data forCharacteristic:self.characteristic type:CBCharacteristicWriteWithResponse];
     self.deviceBlock = rsp;
 }
 

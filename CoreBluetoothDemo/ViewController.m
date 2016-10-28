@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "yzcBLE/yzcBLE.h"
+#import "TestController.h"
 
 
 @interface ViewController ()
@@ -51,6 +52,9 @@
         NSString *msg = [NSString stringWithFormat:@"连接%@成功",model.peripheral.name];
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView show];
+        TestController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"TestController"];
+        vc.title = @"测试数据";
+        [self.navigationController pushViewController:vc animated:YES];
     }];
     
 }
