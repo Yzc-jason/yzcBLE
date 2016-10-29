@@ -10,9 +10,6 @@
 #import "BlueToothManager.h"
 #import "yzcDefine.h"
 
-static NSString *const characteristicUUID = @"FFF1";
-static NSString *const noticharacteristicUUID = @"FFF2";
-
 @interface BlueToothManager()<CBPeripheralDelegate,CBCentralManagerDelegate>
 
 /** 中心管理者 */
@@ -70,8 +67,8 @@ static NSString *const noticharacteristicUUID = @"FFF2";
 {
     self = [super init];
     if (self) {
-        _characteristicUUID = [CBUUID UUIDWithString:characteristicUUID];
-        _noticharacteristicUUID = [CBUUID UUIDWithString:noticharacteristicUUID];
+        _characteristicUUID = [CBUUID UUIDWithString:_characteristicUUIDString];
+        _noticharacteristicUUID = [CBUUID UUIDWithString:_noticharacteristicUUIDString];
         _reConnectPeripherals = [NSMutableArray array];
     }
     return self;
@@ -248,14 +245,13 @@ static NSString *const noticharacteristicUUID = @"FFF2";
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
     for (CBCharacteristic *characteristic in service.characteristics) {
-        if ([characteristic.UUID.UUIDString isEqualToString:characteristicUUID]) {
+        
+        if ([characteristic.UUID.UUIDString isEqualToString:_characteristicUUIDString]) {
             self.characteristic = characteristic;
-            NSLog(@"characteristic UUID");
-        }else if([characteristic.UUID.UUIDString isEqualToString:noticharacteristicUUID]) {
+        }else if([characteristic.UUID.UUIDString isEqualToString:_noticharacteristicUUIDString]) {
             self.noticharacteristic = characteristic;
             [self.peripheral setNotifyValue:YES forCharacteristic:self.noticharacteristic];
-             YZCLog(@"订阅写入成功UUID");
-
+            YZCLog(@"订阅写入成功UUID");
         }
     }
 }

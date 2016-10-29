@@ -23,6 +23,9 @@ typedef void (^CannelPeripheral)(CBPeripheral *peripheral);
 /** 是否过滤掉其他设备 */
 @property (nonatomic, assign) BOOL isFilter;
 
+@property (nonatomic, copy) NSString *characteristicUUIDString;
+
+@property (nonatomic, copy) NSString *noticharacteristicUUIDString;
 
 /** UUID数组 */
 @property (nonatomic, strong) NSArray *services;
