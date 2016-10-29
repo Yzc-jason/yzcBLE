@@ -63,22 +63,15 @@
     return share;
 }
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        _characteristicUUID = [CBUUID UUIDWithString:_characteristicUUIDString];
-        _noticharacteristicUUID = [CBUUID UUIDWithString:_noticharacteristicUUIDString];
-        _reConnectPeripherals = [NSMutableArray array];
-    }
-    return self;
-}
 
 #pragma mark: - 懒加载
 - (CBCentralManager *)cMgr
 {
     if (!_cMgr) {
     
+        _characteristicUUID = [CBUUID UUIDWithString:_characteristicUUIDString];
+        _noticharacteristicUUID = [CBUUID UUIDWithString:_noticharacteristicUUIDString];
+        _reConnectPeripherals = [NSMutableArray array];
 
 #if  __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_6_0
         NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
